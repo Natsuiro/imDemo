@@ -41,7 +41,7 @@
         android:layout_marginEnd="12dp"
         android:hint="@string/prompt_password"
         android:imeOptions="actionGo"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
         android:selectAllOnFocus="true"
         android:textColor="@android:color/black" />
 

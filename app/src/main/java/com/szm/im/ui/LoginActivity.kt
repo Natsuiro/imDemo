@@ -1,12 +1,31 @@
 package com.szm.im.ui
 
+import android.view.KeyEvent
+import android.widget.TextView
 import com.szm.im.R
 import com.szm.im.contract.LoginContract
+import com.szm.im.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class LoginActivity : BaseActivity(),LoginContract.View {
+
+    private val presenter = LoginPresenter(this)
+    override fun init() {
+        super.init()
+        login.setOnClickListener { login() }
+        password.setOnEditorActionListener { _, _, _ ->
+            login()
+            true
+        }
+    }
+
+    private fun login(){
+        val userName = username.text.trim().toString()
+        val password = password.text.trim().toString()
+        presenter.login(userName,password)
+    }
 
     override fun getLayoutResId(): Int =
         R.layout.activity_login
