@@ -7,7 +7,7 @@ interface RegisterContract{
     interface View {
         fun onUserNameError()
         fun onPasswordError()
-        fun onConfirmPassword()
+        fun onConfirmPasswordError()
         fun onStartRegister()
         fun onRegisterSuccess()
         fun onRegisterFailed()
