@@ -7,6 +7,9 @@ android {
     buildToolsVersion build_tool_version
 
     defaultConfig {
+        ndk{
+            abiFilters 'armeabi','armeabi-v7a','arm64-v8a','x86','x86_64'
+        }
         applicationId "com.szm.im"
         minSdkVersion 21
         targetSdkVersion 29
@@ -45,4 +48,7 @@ dependencies {
         exclude module: 'design'
     }
     implementation files('libs/hyphenatechat_3.6.6.jar')
+
+    implementation 'cn.bmob.android:bmob-sdk:3.5.5'
+    implementation 'cn.bmob.android:http-legacy:1.0'
 }

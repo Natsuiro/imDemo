@@ -16,6 +16,9 @@ class RegisterPresenter(val view:RegisterContract.View): RegisterContract.Presen
                     //password equals to confirm password
                     view.onStartRegister()
                     //begin register
+
+
+
                 }else view.onConfirmPasswordError()
 
             }else view.onPasswordError()

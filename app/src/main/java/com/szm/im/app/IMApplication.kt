@@ -2,6 +2,7 @@ package com.szm.im.app
 
 import android.app.Application
 import android.os.Build
+import cn.bmob.v3.Bmob
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMOptions
 import com.szm.im.BuildConfig
@@ -18,5 +19,8 @@ class IMApplication : Application() {
         //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
         //具体是否开启根据当前是不是debug模式
         EMClient.getInstance().setDebugMode(BuildConfig.DEBUG)
+
+        //bmob init
+        Bmob.initialize(applicationContext,"60e66e7bd29aa29d93835e203d228efa")
     }
 }
