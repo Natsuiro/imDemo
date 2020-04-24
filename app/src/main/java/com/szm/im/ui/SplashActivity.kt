@@ -9,12 +9,12 @@ import org.jetbrains.anko.startActivity
 class SplashActivity : BaseActivity(),SplashContract.View {
 
     private val presenter = SplashPresenter(this)
-
     companion object{
         const val DELAY = 2000L
     }
     //when handler be used at first time,the Handler() behind lazy will be exec
     private val handler by lazy {
+        //now i need a handler
         Handler()
     }
 
