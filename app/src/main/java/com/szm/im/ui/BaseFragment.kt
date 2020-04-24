@@ -1,0 +1,31 @@
+package com.szm.im.ui
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+
+abstract class BaseFragment:Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View?
+            = inflater.inflate(getLayoutResId(),null)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+       = init()
+
+    /**
+     * 初始化一些公共的功能,子类也可以复写该方法完成自己的初始化
+     */
+    open fun init() {
+
+    }
+    /**
+     * 子类必须实现该方法返回一个布局资源id
+     * @return Int:布局id
+     */
+    abstract fun getLayoutResId(): Int
+}
