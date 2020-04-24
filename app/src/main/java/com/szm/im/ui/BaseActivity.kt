@@ -1,11 +1,16 @@
 package com.szm.im.ui
 
+import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.szm.im.R
 //基类，对所有的活动进行抽取一些公共属性
 abstract class BaseActivity : AppCompatActivity() {
 
+
+    val progressDialog by lazy {
+        ProgressDialog(this)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResId())
@@ -24,4 +29,13 @@ abstract class BaseActivity : AppCompatActivity() {
      * @return Int:布局id
      */
     abstract fun getLayoutResId(): Int
+
+    fun showProgressDialog(msg:String){
+        progressDialog.setMessage(msg)
+        progressDialog.show()
+    }
+
+    fun dismissProgressDialog(){
+        progressDialog.dismiss()
+    }
 }
