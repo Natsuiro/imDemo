@@ -3,9 +3,12 @@ package com.szm.im.ui
 import android.os.Handler
 import com.szm.im.R
 import com.szm.im.contract.SplashContract
+import com.szm.im.presenter.SplashPresenter
 import org.jetbrains.anko.startActivity
 
 class SplashActivity : BaseActivity(),SplashContract.View {
+
+    private val presenter = SplashPresenter(this)
 
     companion object{
         const val DELAY = 2000L
@@ -13,6 +16,11 @@ class SplashActivity : BaseActivity(),SplashContract.View {
     //when handler be used at first time,the Handler() behind lazy will be exec
     private val handler by lazy {
         Handler()
+    }
+
+    override fun init() {
+        super.init()
+        presenter.checkLoginStatus()
     }
 
     //let the BaseActivity inflate this layout with id
