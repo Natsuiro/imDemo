@@ -52,11 +52,12 @@ class RegisterActivity : BaseActivity(),RegisterContract.View{
 
     override fun onRegisterSuccess() {
         dismissProgressDialog()
+        toast(R.string.register_success)
         finish()
     }
 
-    override fun onRegisterFailed() {
+    override fun onRegisterFailed(msg:String) {
         dismissProgressDialog()
-        toast(R.string.register_fail)
+        toast(getString(R.string.register_fail)+":$msg")
     }
 }
