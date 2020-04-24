@@ -1,13 +1,18 @@
 package com.szm.im.ui
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.view.KeyEvent
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import com.szm.im.R
 import com.szm.im.contract.LoginContract
 import com.szm.im.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+
 
 class LoginActivity : BaseActivity(),LoginContract.View {
 
@@ -24,9 +29,42 @@ class LoginActivity : BaseActivity(),LoginContract.View {
     private fun login(){
         //隐藏软键盘
         hideSoftKeyBoard()
-        val userName = username.text.trim().toString()
-        val password = password.text.trim().toString()
-        presenter.login(userName,password)
+
+        if (hasWriteExternalStoragePermission()){
+            val userName = username.text.trim().toString()
+            val password = password.text.trim().toString()
+            presenter.login(userName,password)
+        }else{
+            applyWriteExternalStoragePermission()
+        }
+
+    }
+
+    private fun applyWriteExternalStoragePermission() {
+        val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        ActivityCompat.requestPermissions(this,permissions,0)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            //用户同意权限
+            login()
+        }else{
+            toast(R.string.permission_denied)
+        }
+    }
+
+    private fun hasWriteExternalStoragePermission(): Boolean {
+
+        val checkSelfPermission =
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        return checkSelfPermission == PackageManager.PERMISSION_GRANTED
+
+
     }
 
     override fun getLayoutResId(): Int =
