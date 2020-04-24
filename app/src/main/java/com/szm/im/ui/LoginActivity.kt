@@ -22,6 +22,8 @@ class LoginActivity : BaseActivity(),LoginContract.View {
     }
 
     private fun login(){
+        //隐藏软键盘
+        hideSoftKeyBoard()
         val userName = username.text.trim().toString()
         val password = password.text.trim().toString()
         presenter.login(userName,password)

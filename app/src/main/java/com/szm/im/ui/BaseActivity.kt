@@ -1,12 +1,18 @@
 package com.szm.im.ui
 
 import android.app.ProgressDialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethod
+import android.view.inputmethod.InputMethodManager
 import com.szm.im.R
 //基类，对所有的活动进行抽取一些公共属性
 abstract class BaseActivity : AppCompatActivity() {
 
+    val inputMethodManager by lazy {
+        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    }
 
     val progressDialog by lazy {
         ProgressDialog(this)
@@ -37,5 +43,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun dismissProgressDialog(){
         progressDialog.dismiss()
+    }
+
+    fun hideSoftKeyBoard(){
+        inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken,0)
     }
 }
