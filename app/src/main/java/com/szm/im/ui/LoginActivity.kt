@@ -19,6 +19,10 @@ class LoginActivity : BaseActivity(),LoginContract.View {
     private val presenter = LoginPresenter(this)
     override fun init() {
         super.init()
+        newUser.setOnClickListener {
+            startActivity<RegisterActivity>()
+        }
+
         login.setOnClickListener { login() }
         password.setOnEditorActionListener { _, _, _ ->
             login()
