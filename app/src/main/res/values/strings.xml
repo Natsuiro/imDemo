@@ -14,4 +14,7 @@
     <string name="new_user">Im a new User</string>
     <string name="logging">logging..</string>
     <string name="permission_denied">permission denied!</string>
+    <string name="invalid_confirm_password" >invalid password</string>
+    <string name="registering" >Registering..</string>
+    <string name="register_fail" >Register Failed</string>
 </resources>
