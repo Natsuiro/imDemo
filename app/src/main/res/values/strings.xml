@@ -36,4 +36,5 @@
     <string name="add">Add</string>
     <string name="search_failed">Search Failed</string>
     <string name="search_success">Search Success</string>
+    <string name="searching">Searching</string>
 </resources>
