@@ -23,6 +23,9 @@ class AddFriendPresenter(val view : AddFriendContract.View) : AddFriendContract.
             override fun done(p0: MutableList<BmobUser>?, e: BmobException?) {
                 if (e == null){
 
+
+
+
                     addFriendItems.clear()
 
                     doAsync {
