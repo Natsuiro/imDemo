@@ -19,7 +19,6 @@ class ContactFragment : BaseFragment(),ContactContract.View {
     }
 
     override fun init() {
-        super.init()
         header_title.text = getString(R.string.contact)
         add.visibility = View.VISIBLE
 
@@ -34,7 +33,7 @@ class ContactFragment : BaseFragment(),ContactContract.View {
         recycleView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = ContactListAdapter(context)
+            adapter = ContactListAdapter(context,presenter.contactListItems)
         }
 
         presenter.loadContacts()
