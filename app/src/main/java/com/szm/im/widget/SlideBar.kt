@@ -13,7 +13,7 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
     private var sectionHeight:Float = 0.0f
 
     var paint = Paint()
-
+    var baseline = 0f
     companion object {
         private val SECTIONS = arrayOf(
             "A", "B", "C", "D", "E"
@@ -26,11 +26,14 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         sectionHeight = h  * 1.0f / SECTIONS.size
+        val fontMetrics = paint.fontMetrics
+        val textHeight = fontMetrics.descent - fontMetrics.ascent
+        baseline = sectionHeight/2 + (textHeight / 2 - fontMetrics.descent)
     }
 
     init {
         paint.apply {
-            color = resources.getColor(android.R.color.darker_gray)
+            color = resources.getColor(android.R.color.holo_blue_dark)
             textSize = sp(12).toFloat()
             textAlign = Paint.Align.CENTER
         }
@@ -38,7 +41,7 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
 
     override fun onDraw(canvas: Canvas) {
         val x = width * 1.0f / 2
-        var y = sectionHeight
+        var y = baseline
         SECTIONS.forEach {
             canvas.drawText(it, x, y, paint)
             y += sectionHeight
