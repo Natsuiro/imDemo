@@ -25,6 +25,7 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
             , "U", "V", "W", "X", "Y", "Z"
         )
     }
+    var onSectionChangeListener : OnSectionChangeListener?= null
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         sectionHeight = h  * 1.0f / SECTIONS.size
@@ -61,15 +62,20 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
                 val index = getTouchIndex(event)
                 val firstLetter = SECTIONS[index]
 
+                onSectionChangeListener?.onSectionChange(firstLetter)
+
             }
             MotionEvent.ACTION_MOVE ->{
                 //target
                 val index = getTouchIndex(event)
                 val firstLetter = SECTIONS[index]
+                onSectionChangeListener?.onSectionChange(firstLetter)
             }
 
-            MotionEvent.ACTION_UP ->
+            MotionEvent.ACTION_UP -> {
                 setBackgroundColor(Color.TRANSPARENT)
+                onSectionChangeListener?.onSlideFinish()
+            }
 //            MotionEvent.ACTION_MOVE ->
         }
         return true
@@ -85,6 +91,11 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
             index = SECTIONS.size - 1
         }
         return index
+    }
+
+    interface OnSectionChangeListener{
+        fun onSectionChange(firstLetter : String )
+        fun onSlideFinish()
     }
 
 }

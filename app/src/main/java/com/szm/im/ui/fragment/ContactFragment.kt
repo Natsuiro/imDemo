@@ -9,6 +9,7 @@ import com.szm.im.adapter.ContactListAdapter
 import com.szm.im.adapter.EMContactListenerAdapter
 import com.szm.im.contract.ContactContract
 import com.szm.im.presenter.ContactPresenter
+import com.szm.im.widget.SlideBar
 import kotlinx.android.synthetic.main.fragment_contact.*
 import kotlinx.android.synthetic.main.header.*
 import org.jetbrains.anko.toast
@@ -54,6 +55,17 @@ class ContactFragment : BaseFragment(),ContactContract.View {
         presenter.loadContacts()
 
 
+        slideBar.onSectionChangeListener = object : SlideBar.OnSectionChangeListener{
+            override fun onSectionChange(firstLetter: String) {
+                section.visibility = View.VISIBLE
+                section.text = firstLetter
+            }
+
+            override fun onSlideFinish() {
+                section.visibility = View.GONE
+            }
+
+        }
     }
 
     override fun onLoadContactsSuccess() {
