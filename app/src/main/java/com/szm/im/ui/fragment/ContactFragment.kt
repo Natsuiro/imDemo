@@ -52,6 +52,8 @@ class ContactFragment : BaseFragment(),ContactContract.View {
 
         })
         presenter.loadContacts()
+
+
     }
 
     override fun onLoadContactsSuccess() {

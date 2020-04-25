@@ -21,7 +21,6 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <com.szm.im.widget.SlideBar
-            android:background="#fff"
             android:id="@+id/slideBar"
             android:layout_width="20dp"
             android:layout_gravity="end"

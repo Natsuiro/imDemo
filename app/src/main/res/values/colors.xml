@@ -7,4 +7,5 @@
     <color name="btn_login_pressed">#12A5B1</color>
     <color name="btn_login_default">#56ECE0</color>
     <color name="im_blue">#4194F8</color>
+    <color name="half_transparent">#5000</color>
 </resources>
