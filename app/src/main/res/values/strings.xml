@@ -18,4 +18,5 @@
     <string name="registering" >Registering..</string>
     <string name="register_fail" >Register Failed</string>
     <string name="register_success" >Register Success</string>
+    <string name="user_exist">User Exist!</string>
 </resources>

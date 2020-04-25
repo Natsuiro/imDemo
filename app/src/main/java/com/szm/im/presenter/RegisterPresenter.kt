@@ -45,7 +45,10 @@ class RegisterPresenter(val view: RegisterContract.View) : RegisterContract.Pres
                     registerEaseMob(userName, password)
                 } else {
                     //注册失败
-                    view.onRegisterFailed("server busy")
+                    if (e.errorCode == 202){
+                        //user name has been taken
+                        view.onUserExist()
+                    }else view.onRegisterFailed("server busy")
                 }
             }
         })

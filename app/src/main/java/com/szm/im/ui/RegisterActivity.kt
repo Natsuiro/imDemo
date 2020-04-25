@@ -60,4 +60,9 @@ class RegisterActivity : BaseActivity(),RegisterContract.View{
         dismissProgressDialog()
         toast(getString(R.string.register_fail)+":$msg")
     }
+
+    override fun onUserExist() {
+        dismissProgressDialog()
+        toast(R.string.user_exist)
+    }
 }
