@@ -22,10 +22,14 @@ class ContactPresenter(val view: ContactContract.View) : ContactContract.Present
 
                 userNames.sortBy { it[0] }
                 Log.d("contactPresenter",""+userNames.size)
-                userNames.forEach{
-                    val contactListItem = ContactListItem(it,it[0].toUpperCase())
+
+                userNames.forEachIndexed{ index,value->
+                    //普安段是否显示首字符
+                    val showFirstLetter = index == 0 || value[0] != userNames[index-1][0]
+                    val contactListItem = ContactListItem(value,value[0].toUpperCase())
                     contactListItems.add(contactListItem)
                 }
+
                 //然后切换回主线程反馈ui
                 uiThread {
                     Log.d("contactPresenter","LOAD_SUCCESS")
