@@ -19,4 +19,7 @@
     <string name="register_fail" >Register Failed</string>
     <string name="register_success" >Register Success</string>
     <string name="user_exist">User Exist!</string>
+    <string name="message">Message</string>
+    <string name="contact">Contact</string>
+    <string name="dynamic">Dynamic</string>
 </resources>

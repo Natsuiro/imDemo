@@ -1,10 +1,7 @@
-package com.szm.im.ui
+package com.szm.im.ui.activity
 
 import android.Manifest
-import android.content.Context
 import android.content.pm.PackageManager
-import android.view.KeyEvent
-import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import com.szm.im.R
 import com.szm.im.contract.LoginContract

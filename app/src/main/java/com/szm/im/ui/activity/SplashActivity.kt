@@ -1,4 +1,4 @@
-package com.szm.im.ui
+package com.szm.im.ui.activity
 
 import android.os.Handler
 import com.szm.im.R

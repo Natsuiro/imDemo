@@ -6,4 +6,5 @@
     <color name="btn_login_unpressed">#56ECE0</color>
     <color name="btn_login_pressed">#12A5B1</color>
     <color name="btn_login_default">#56ECE0</color>
+    <color name="im_blue">#4194F8</color>
 </resources>

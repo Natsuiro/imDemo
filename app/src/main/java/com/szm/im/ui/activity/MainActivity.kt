@@ -1,4 +1,4 @@
-package com.szm.im.ui
+package com.szm.im.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

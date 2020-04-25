@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_conversation"
+        icon="@mipmap/icon_chat_unpress"
+        title="@string/message"
+        />
+    <tab
+        id="@+id/tab_contacts"
+        icon="@mipmap/icon_group_unpress"
+        title="@string/contact"
+        />
+    <tab
+        id="@+id/tab_dynamic"
+        icon="@mipmap/icon_star_unpress"
+        title="@string/dynamic"
+        />
+
+</tabs>

@@ -29,15 +29,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.RegisterActivity"></activity>
+        <activity android:name=".ui.activity.RegisterActivity"></activity>
 
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="1102200424042279#suzumi" />
 
-        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.activity.LoginActivity" />
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.activity.SplashActivity"
             android:theme="@style/ThemeFullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,7 +45,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity" /> <!-- 声明SDK所需的service SDK核心功能 -->
+        <activity android:name=".ui.activity.MainActivity" /> <!-- 声明SDK所需的service SDK核心功能 -->
         <service
             android:name="com.hyphenate.chat.EMChatService"
             android:exported="true" />

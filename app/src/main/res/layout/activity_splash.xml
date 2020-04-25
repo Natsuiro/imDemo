@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SplashActivity"
+    tools:context=".ui.activity.SplashActivity"
     android:background="#37CDDF"
     >
 
     <ImageView
-        android:src="@mipmap/icon_splash"
+        android:src="@mipmap/icon_im"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

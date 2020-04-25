@@ -1,6 +1,4 @@
-package com.szm.im.ui
-import android.view.KeyEvent
-import android.widget.TextView
+package com.szm.im.ui.activity
 import com.szm.im.R
 import com.szm.im.contract.RegisterContract
 import com.szm.im.presenter.RegisterPresenter

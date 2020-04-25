@@ -1,4 +1,4 @@
-package com.szm.im.ui
+package com.szm.im.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
