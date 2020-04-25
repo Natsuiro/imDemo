@@ -1,4 +1,4 @@
-package com.szm.im.contract
+package com.szm.im.presenter
 
 import android.os.Handler
 import android.os.Looper

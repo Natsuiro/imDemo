@@ -1,7 +1,9 @@
 package com.szm.im.contract
 
+import com.szm.im.presenter.BasePresenter
+
 interface RegisterContract{
-    interface Presenter:BasePresenter{
+    interface Presenter: BasePresenter {
         fun register(userName:String,password:String,confirmPassword:String)
     }
     interface View {

@@ -5,11 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.szm.im.R
 import com.szm.im.adapter.ContactListAdapter
 import com.szm.im.contract.ContactContract
+import com.szm.im.presenter.ContactPresenter
 import kotlinx.android.synthetic.main.fragment_contact.*
 import kotlinx.android.synthetic.main.header.*
 import org.jetbrains.anko.toast
 
 class ContactFragment : BaseFragment(),ContactContract.View {
+
+    val presenter = ContactPresenter(this)
+
     override fun getLayoutResId(): Int {
         return R.layout.fragment_contact
     }
@@ -22,6 +26,9 @@ class ContactFragment : BaseFragment(),ContactContract.View {
         swipeRefreshLayout.apply {
             setColorSchemeColors(resources.getColor(R.color.im_blue))
             isRefreshing = true
+            setOnRefreshListener {
+                presenter.loadContacts()
+            }
         }
 
         recycleView.apply {
@@ -29,6 +36,8 @@ class ContactFragment : BaseFragment(),ContactContract.View {
             layoutManager = LinearLayoutManager(context)
             adapter = ContactListAdapter(context)
         }
+
+        presenter.loadContacts()
 
     }
 

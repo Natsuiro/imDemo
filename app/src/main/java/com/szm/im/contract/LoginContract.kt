@@ -1,7 +1,9 @@
 package com.szm.im.contract
 
+import com.szm.im.presenter.BasePresenter
+
 interface LoginContract {
-    interface Presenter : BasePresenter{
+    interface Presenter : BasePresenter {
         fun login(userName:String,password:String)
     }
     interface View {

@@ -1,7 +1,9 @@
 package com.szm.im.contract
 
+import com.szm.im.presenter.BasePresenter
+
 interface ContactContract {
-    interface Presenter : BasePresenter{
+    interface Presenter : BasePresenter {
         fun loadContacts()
     }
     interface View {

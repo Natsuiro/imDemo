@@ -1,7 +1,9 @@
 package com.szm.im.contract
 
+import com.szm.im.presenter.BasePresenter
+
 interface SplashContract {
-    interface Presenter :BasePresenter{
+    interface Presenter : BasePresenter {
         /**
          * check isLogin
          */
