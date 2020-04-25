@@ -51,4 +51,6 @@ dependencies {
 
     implementation 'cn.bmob.android:bmob-sdk:3.5.5'
     implementation 'cn.bmob.android:http-legacy:1.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
 }
