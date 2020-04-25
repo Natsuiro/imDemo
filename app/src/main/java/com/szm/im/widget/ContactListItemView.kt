@@ -10,7 +10,7 @@ class ContactListItemView(context: Context?, attrs: AttributeSet?=null) :
     RelativeLayout(context, attrs) {
 
     init {
-        View.inflate(context, R.layout.view_contact_item,this)
+        View.inflate(context, R.layout.contact_list_item,this)
     }
 
 }
