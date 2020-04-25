@@ -26,6 +26,18 @@
             android:layout_gravity="end"
             android:layout_height="match_parent"/>
 
+        <TextView
+            android:id="@+id/section"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_light"
+            />
 
     </FrameLayout>
 

@@ -55,13 +55,36 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         when(event.action){
-            MotionEvent.ACTION_DOWN ->
+            MotionEvent.ACTION_DOWN ->{
                 setBackgroundResource(R.drawable.bg_slide_bar)
+                //target
+                val index = getTouchIndex(event)
+                val firstLetter = SECTIONS[index]
+
+            }
+            MotionEvent.ACTION_MOVE ->{
+                //target
+                val index = getTouchIndex(event)
+                val firstLetter = SECTIONS[index]
+            }
+
             MotionEvent.ACTION_UP ->
                 setBackgroundColor(Color.TRANSPARENT)
 //            MotionEvent.ACTION_MOVE ->
         }
         return true
+    }
+
+    //获取点击位置的字母的下表
+    private fun getTouchIndex(event: MotionEvent): Int {
+        var index :Int = (event.y / sectionHeight).toInt()
+        //越界检查
+        if (index < 0){
+            index = 0
+        }else if(index >= SECTIONS.size){
+            index = SECTIONS.size - 1
+        }
+        return index
     }
 
 }
