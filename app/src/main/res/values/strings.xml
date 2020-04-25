@@ -22,4 +22,5 @@
     <string name="message">Message</string>
     <string name="contact">Contact</string>
     <string name="dynamic">Dynamic</string>
+    <string name="log_out">Log out</string>
 </resources>
