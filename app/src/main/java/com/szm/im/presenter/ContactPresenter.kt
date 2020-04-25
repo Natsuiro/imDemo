@@ -24,9 +24,10 @@ class ContactPresenter(val view: ContactContract.View) : ContactContract.Present
                 Log.d("contactPresenter",""+userNames.size)
 
                 userNames.forEachIndexed{ index,value->
-                    //普安段是否显示首字符
-                    val showFirstLetter = index == 0 || value[0] != userNames[index-1][0]
-                    val contactListItem = ContactListItem(value,value[0].toUpperCase())
+                    //判断是否显示首字符
+                    //忽略大小写区别
+                    val showFirstLetter = index == 0 || value[0].equals(userNames[index-1][0],true)
+                    val contactListItem = ContactListItem(value,value[0].toUpperCase(),showFirstLetter)
                     contactListItems.add(contactListItem)
                 }
 
