@@ -4,10 +4,12 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.szm.im.R
 import com.szm.im.adapter.ContactListAdapter
+import com.szm.im.contract.ContactContract
 import kotlinx.android.synthetic.main.fragment_contact.*
 import kotlinx.android.synthetic.main.header.*
+import org.jetbrains.anko.toast
 
-class ContactFragment : BaseFragment() {
+class ContactFragment : BaseFragment(),ContactContract.View {
     override fun getLayoutResId(): Int {
         return R.layout.fragment_contact
     }
@@ -28,6 +30,16 @@ class ContactFragment : BaseFragment() {
             adapter = ContactListAdapter(context)
         }
 
+    }
+
+    override fun onLoadContactsSuccess() {
+        swipeRefreshLayout.isRefreshing = false
+        recycleView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onLoadContactsFailed() {
+        swipeRefreshLayout.isRefreshing = false
+        context?.toast(R.string.load_contact_failed)
     }
 
 }

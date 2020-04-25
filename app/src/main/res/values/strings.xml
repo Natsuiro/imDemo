@@ -25,4 +25,5 @@
     <string name="log_out">Log out</string>
     <string name="log_out_failed">log out failed</string>
     <string name="log_out_success">log out success</string>
+    <string name="load_contact_failed">Load Failed</string>
 </resources>
