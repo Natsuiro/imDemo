@@ -23,4 +23,6 @@
     <string name="contact">Contact</string>
     <string name="dynamic">Dynamic</string>
     <string name="log_out">Log out</string>
+    <string name="log_out_failed">log out failed</string>
+    <string name="log_out_success">log out success</string>
 </resources>
