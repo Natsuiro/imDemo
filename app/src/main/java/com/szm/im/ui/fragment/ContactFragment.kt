@@ -59,7 +59,10 @@ class ContactFragment : BaseFragment(),ContactContract.View {
             override fun onSectionChange(firstLetter: String) {
                 section.visibility = View.VISIBLE
                 section.text = firstLetter
+                recycleView.smoothScrollToPosition(getPosition(firstLetter))
             }
+
+
 
             override fun onSlideFinish() {
                 section.visibility = View.GONE
@@ -67,6 +70,11 @@ class ContactFragment : BaseFragment(),ContactContract.View {
 
         }
     }
+
+    private fun getPosition(firstLetter: String): Int =
+        presenter.contactListItems.binarySearch {
+            contactListItem -> contactListItem.firstLetter.minus(firstLetter[0])
+        }
 
     override fun onLoadContactsSuccess() {
         swipeRefreshLayout.isRefreshing = false
