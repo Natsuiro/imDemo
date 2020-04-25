@@ -30,4 +30,6 @@
     <string name="delete_friend_message">really to Delete?</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_confirm">Yes</string>
+    <string name="delete_friend_success">Delete Success</string>
+    <string name="delete_friend_failed">Delete Failed</string>
 </resources>
