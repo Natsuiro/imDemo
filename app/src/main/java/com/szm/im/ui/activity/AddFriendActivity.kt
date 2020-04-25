@@ -1,9 +1,5 @@
 package com.szm.im.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.KeyEvent
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.szm.im.R
 import com.szm.im.adapter.AddFriendListAdapter
@@ -26,7 +22,7 @@ class AddFriendActivity : BaseActivity(),AddFriendContract.View {
         recycleView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = AddFriendListAdapter(context)
+            adapter = AddFriendListAdapter(context,presenter.addFriendItems)
         }
 
         search.setOnClickListener {
