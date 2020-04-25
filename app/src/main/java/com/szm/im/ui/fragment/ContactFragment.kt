@@ -2,8 +2,11 @@ package com.szm.im.ui.fragment
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hyphenate.EMContactListener
+import com.hyphenate.chat.EMClient
 import com.szm.im.R
 import com.szm.im.adapter.ContactListAdapter
+import com.szm.im.adapter.EMContactListenerAdapter
 import com.szm.im.contract.ContactContract
 import com.szm.im.presenter.ContactPresenter
 import kotlinx.android.synthetic.main.fragment_contact.*
@@ -36,8 +39,19 @@ class ContactFragment : BaseFragment(),ContactContract.View {
             adapter = ContactListAdapter(context,presenter.contactListItems)
         }
 
-        presenter.loadContacts()
+        EMClient.getInstance().contactManager().setContactListener(object :
+            EMContactListenerAdapter() {
 
+            override fun onContactDeleted(p0: String?) {
+
+                //重新获取联系人的数据
+                presenter.loadContacts()
+
+            }
+
+
+        })
+        presenter.loadContacts()
     }
 
     override fun onLoadContactsSuccess() {

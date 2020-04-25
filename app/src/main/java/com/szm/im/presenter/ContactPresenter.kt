@@ -17,6 +17,9 @@ class ContactPresenter(val view: ContactContract.View) : ContactContract.Present
         //该方法是一个同步方法，执行时会阻塞线程，需要在子线程中执行
 
         doAsync {
+
+            //clear set
+            contactListItems.clear()
             try {
                 val userNames = EMClient.getInstance().contactManager().allContactsFromServer
 
