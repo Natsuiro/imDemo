@@ -26,4 +26,8 @@
     <string name="log_out_failed">log out failed</string>
     <string name="log_out_success">log out success</string>
     <string name="load_contact_failed">Load Failed</string>
+    <string name="delete_friend_title">Delete</string>
+    <string name="delete_friend_message">really to Delete?</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_confirm">Yes</string>
 </resources>
