@@ -10,7 +10,6 @@ interface AddFriendContract {
     interface View {
         fun onSearchSuccess()
         fun onSearchFailed()
-
     }
 
 }
