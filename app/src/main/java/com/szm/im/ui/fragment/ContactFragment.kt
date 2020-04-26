@@ -94,6 +94,7 @@ class ContactFragment : BaseFragment(),ContactContract.View {
     override fun onLoadContactsSuccess() {
         swipeRefreshLayout.isRefreshing = false
         recycleView.adapter?.notifyDataSetChanged()
+        context?.toast(R.string.load_contact_success)
     }
 
     override fun onLoadContactsFailed() {

@@ -37,4 +37,7 @@
     <string name="search_failed">Search Failed</string>
     <string name="search_success">Search Success</string>
     <string name="searching">Searching</string>
+    <string name="has_add">Added</string>
+    <string name="not_add">Add</string>
+    <string name="load_contact_success">Load Success</string>
 </resources>

@@ -8,6 +8,7 @@ import cn.bmob.v3.listener.FindListener
 import com.hyphenate.chat.EMClient
 import com.szm.im.contract.AddFriendContract
 import com.szm.im.data.AddFriendItem
+import com.szm.im.db.IMDatabase
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -22,15 +23,24 @@ class AddFriendPresenter(val view : AddFriendContract.View) : AddFriendContract.
         query.findObjects(object : FindListener<BmobUser>(){
             override fun done(p0: MutableList<BmobUser>?, e: BmobException?) {
                 if (e == null){
-
-
-
-
                     addFriendItems.clear()
+
+                    val allContacts = IMDatabase.instance.getAllContacts()
 
                     doAsync {
                         p0?.forEach {
-                            val addFriendItem = AddFriendItem(it.username,it.createdAt)
+
+                            //对比是否已经添加好友
+                            var isAdded = false
+                            for (contact in allContacts){
+                                if (contact.name == it.username){
+                                    isAdded = true
+                                }
+
+
+                            }
+
+                            val addFriendItem = AddFriendItem(it.username,it.createdAt,isAdded)
                             addFriendItems.add(addFriendItem)
                         }
                         uiThread {

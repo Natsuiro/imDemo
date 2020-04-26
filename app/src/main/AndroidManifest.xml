@@ -22,6 +22,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".app.IMApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

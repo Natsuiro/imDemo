@@ -6,6 +6,8 @@ import com.hyphenate.chat.EMClient
 import com.hyphenate.exceptions.HyphenateException
 import com.szm.im.contract.ContactContract
 import com.szm.im.data.ContactListItem
+import com.szm.im.db.Contact
+import com.szm.im.db.IMDatabase
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -20,6 +22,8 @@ class ContactPresenter(val view: ContactContract.View) : ContactContract.Present
 
             //clear set
             contactListItems.clear()
+            IMDatabase.instance.deleteAllContacts()
+
             try {
                 val userNames = EMClient.getInstance().contactManager().allContactsFromServer
 
@@ -32,6 +36,9 @@ class ContactPresenter(val view: ContactContract.View) : ContactContract.Present
                     val showFirstLetter = index == 0 || value[0].equals(userNames[index-1][0],true)
                     val contactListItem = ContactListItem(value,value[0].toUpperCase(),showFirstLetter)
                     contactListItems.add(contactListItem)
+
+                    val contact = Contact(mutableMapOf("name" to value))
+                    IMDatabase.instance.saveContact(contact)
                 }
 
                 //然后切换回主线程反馈ui
