@@ -2,6 +2,7 @@ package com.szm.im.db
 
 import com.szm.im.extensions.toVarargArray
 import org.jetbrains.anko.db.MapRowParser
+import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
@@ -26,5 +27,11 @@ class IMDatabase {
 
             })
         }
+
+    fun deleteAllContacts(){
+        databaseHelper.use {
+            delete(ContactTable.NAME)
+        }
+    }
 
 }
