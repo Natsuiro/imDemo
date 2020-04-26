@@ -5,10 +5,12 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import com.szm.im.R
+import com.szm.im.contract.ChatContract
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.header.*
+import org.jetbrains.anko.toast
 
-class ChatActivity : BaseActivity() {
+class ChatActivity : BaseActivity() ,ChatContract.View{
     override fun getLayoutResId(): Int =
         R.layout.activity_chat
 
@@ -44,6 +46,24 @@ class ChatActivity : BaseActivity() {
         header_title.text = username
 
 
+    }
+
+    override fun onStartSendMessage() {
+        //通知recyclerView刷新列表
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onSendMessageSuccess() {
+        recyclerView.adapter?.notifyDataSetChanged()
+        toast("send Message success")
+        //清空编辑框
+        edit.text.clear()
+
+    }
+
+    override fun onSendMessageFailed() {
+        toast("send Message failed")
+        recyclerView.adapter?.notifyDataSetChanged()
     }
 
 }
