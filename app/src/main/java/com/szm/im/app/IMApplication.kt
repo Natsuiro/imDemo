@@ -8,9 +8,14 @@ import com.hyphenate.chat.EMOptions
 import com.szm.im.BuildConfig
 
 class IMApplication : Application() {
+
+    companion object{
+        lateinit var instance: IMApplication
+    }
+
     override fun onCreate() {
         super.onCreate()
-
+        instance = this
         //IM SDK 的初始化
         val option = EMOptions()
         //添加好友不需要验证，false为改成需要验证
