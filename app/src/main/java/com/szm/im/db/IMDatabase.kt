@@ -1,7 +1,9 @@
 package com.szm.im.db
 
 import com.szm.im.extensions.toVarargArray
+import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
 
 class IMDatabase {
     companion object{
@@ -15,4 +17,14 @@ class IMDatabase {
             insert(ContactTable.NAME,*contact.map.toVarargArray())
         }
     }
+
+    fun  getAllContacts():List<Contact>
+        = databaseHelper.use {
+            select(ContactTable.NAME).parseList(object :MapRowParser<Contact>{
+                override fun parseRow(columns: Map<String, Any?>): Contact
+                    = Contact(columns.toMutableMap())
+
+            })
+        }
+
 }
