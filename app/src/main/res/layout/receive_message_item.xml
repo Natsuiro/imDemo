@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_toEndOf="@+id/icon"
-            android:background="@android:color/holo_blue_light"
+            android:background="@android:color/holo_red_dark"
             android:gravity="center"
             android:padding="5dp"
             android:text="hello"
