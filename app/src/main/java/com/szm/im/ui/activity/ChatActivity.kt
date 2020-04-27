@@ -2,10 +2,13 @@ package com.szm.im.ui.activity
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.View
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import com.szm.im.R
 import com.szm.im.contract.ChatContract
+import com.szm.im.presenter.ChatPresenter
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.header.*
 import org.jetbrains.anko.toast
@@ -14,10 +17,24 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
     override fun getLayoutResId(): Int =
         R.layout.activity_chat
 
+    val presenter = ChatPresenter(this)
+    var username:String = ""
+
     override fun init() {
         super.init()
         initHeader()
         initEditText()
+
+        send.setOnClickListener {
+            sendMessage()
+        }
+
+    }
+
+    private fun sendMessage() {
+        hideSoftKeyBoard()
+        val message = edit.text.trim().toString()
+        presenter.sendMessage(username,message)
     }
 
     private fun initEditText() {
@@ -35,6 +52,11 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
             }
 
         })
+        
+        edit.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            sendMessage()
+            true
+        })
     }
 
     private fun initHeader() {
@@ -42,7 +64,8 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
         back.setOnClickListener { finish() }
 
         //获取聊天的对象
-        val username = intent.getStringExtra("username")
+        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+        username = intent.getStringExtra("username")
         header_title.text = username
 
 
