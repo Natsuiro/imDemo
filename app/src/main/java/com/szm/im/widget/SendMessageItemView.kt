@@ -24,21 +24,24 @@ class SendMessageItemView(context: Context?, attrs: AttributeSet? = null) :
     }
 
     private fun updateProgress(emMessage: EMMessage) {
+
+        val progress = this.findViewById<ImageView>(R.id.progress)
+
         emMessage.status().let {
             when(it){
                 EMMessage.Status.INPROGRESS -> {
+                    progress.setImageResource(R.drawable.icon_refresh)
+                    progress.visibility = View.VISIBLE
 
-                    val progress = this.findViewById<ImageView>(R.id.progress)
-                    val rotateAnimation = RotateAnimation(0f,360f)
+                    val rotateAnimation = RotateAnimation(0f,360f,0.5f,0.5f)
                     rotateAnimation.duration = 2000
                     rotateAnimation.repeatCount = RotateAnimation.INFINITE
-                    progress.startAnimation(rotateAnimation)
 
-                    progress.visibility = View.VISIBLE
-                    progress.setImageResource(R.drawable.icon_refresh)
+                    progress.startAnimation(rotateAnimation)
 
                 }
                 EMMessage.Status.SUCCESS ->{
+                    progress.clearAnimation()
                     progress.visibility = View.GONE
                 }
                 EMMessage.Status.FAIL ->{
