@@ -49,8 +49,7 @@ class LoginActivity : BaseActivity(),LoginContract.View {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+        grantResults: IntArray) {
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
             //用户同意权限
             login()
@@ -64,8 +63,6 @@ class LoginActivity : BaseActivity(),LoginContract.View {
         val checkSelfPermission =
             ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         return checkSelfPermission == PackageManager.PERMISSION_GRANTED
-
-
     }
 
     override fun getLayoutResId(): Int =

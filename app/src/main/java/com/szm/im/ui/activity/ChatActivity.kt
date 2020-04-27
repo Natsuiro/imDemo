@@ -6,7 +6,9 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.szm.im.R
+import com.szm.im.adapter.MessageListAdapter
 import com.szm.im.contract.ChatContract
 import com.szm.im.presenter.ChatPresenter
 import kotlinx.android.synthetic.main.activity_chat.*
@@ -24,11 +26,19 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
         super.init()
         initHeader()
         initEditText()
-
+        initRecyclerView()
         send.setOnClickListener {
             sendMessage()
         }
 
+    }
+
+    private fun initRecyclerView() {
+        recyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = MessageListAdapter(context,presenter.messages)
+        }
     }
 
     private fun sendMessage() {

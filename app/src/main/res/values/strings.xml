@@ -41,4 +41,5 @@
     <string name="not_add">Add</string>
     <string name="load_contact_success">Load Success</string>
     <string name="send">Send</string>
+    <string name="not_text_message">not text message</string>
 </resources>

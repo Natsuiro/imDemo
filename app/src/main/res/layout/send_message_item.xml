@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
+
         android:id="@+id/timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,9 +27,15 @@
             android:layout_height="50dp"/>
 
         <TextView
+            android:background="@android:color/holo_blue_light"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:text="hello"
+            android:layout_margin="5dp"
+            android:padding="5dp"
             android:layout_toStartOf="@+id/icon"
             android:id="@+id/message"
-            android:background="#8000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
