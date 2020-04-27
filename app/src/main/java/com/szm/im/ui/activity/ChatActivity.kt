@@ -7,7 +7,11 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hyphenate.EMMessageListener
+import com.hyphenate.chat.EMClient
+import com.hyphenate.chat.EMMessage
 import com.szm.im.R
+import com.szm.im.adapter.EMMessageListenerAdapter
 import com.szm.im.adapter.MessageListAdapter
 import com.szm.im.contract.ChatContract
 import com.szm.im.presenter.ChatPresenter
@@ -22,11 +26,21 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
     val presenter = ChatPresenter(this)
     var username:String = ""
 
+    private val listener = object : EMMessageListenerAdapter(){
+        override fun onMessageReceived(p0: MutableList<EMMessage>?) {
+            presenter.addMessage(username,p0)
+            runOnUiThread { recyclerView.adapter?.notifyDataSetChanged() }
+        }
+
+    }
     override fun init() {
         super.init()
         initHeader()
         initEditText()
         initRecyclerView()
+
+        EMClient.getInstance().chatManager().addMessageListener(listener)
+
         send.setOnClickListener {
             sendMessage()
         }
@@ -97,6 +111,11 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
     override fun onSendMessageFailed() {
         toast("send Message failed")
         recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EMClient.getInstance().chatManager().removeMessageListener(listener)
     }
 
 }

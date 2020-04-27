@@ -11,6 +11,9 @@ class ChatPresenter(val view:ChatContract.View) : ChatContract.Presenter {
 
     override fun sendMessage(contact: String, message: String) {
         val emMessage = EMMessage.createTxtSendMessage(message,contact)
+        messages.add(emMessage)
+        view.onStartSendMessage()
+        EMClient.getInstance().chatManager().sendMessage(emMessage)
 
         emMessage.setMessageStatusCallback(object : EMCallBackAdapter(){
             override fun onSuccess() {
@@ -22,9 +25,15 @@ class ChatPresenter(val view:ChatContract.View) : ChatContract.Presenter {
             }
         })
 
-        messages.add(emMessage)
-        view.onStartSendMessage()
-        EMClient.getInstance().chatManager().sendMessage(emMessage)
+
+    }
+
+    override fun addMessage(username: String, msg: MutableList<EMMessage>?) {
+        msg?.let { messages.addAll(it) }
+        //更新消息为已读消息
+        //获取跟联系人的会话，标记会话的消息全部已读
+        val conversation = EMClient.getInstance().chatManager().getConversation(username)
+        conversation.markAllMessagesAsRead()
     }
 
 }
