@@ -1,8 +1,6 @@
 package com.szm.im.widget
 
 import android.content.Context
-import android.database.DatabaseUtils
-import android.graphics.drawable.AnimationDrawable
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.RotateAnimation
@@ -17,8 +15,9 @@ import java.util.*
 
 class SendMessageItemView(context: Context?, attrs: AttributeSet? = null) :
     RelativeLayout(context, attrs) {
-    fun bindView(emMessage: EMMessage) {
-        updateTimeStamp(emMessage)
+    fun bindView(emMessage: EMMessage, showTimeStamp: Boolean) {
+
+       updateTimeStamp(emMessage,showTimeStamp)
         updateMessage(emMessage)
         updateProgress(emMessage)
     }
@@ -61,8 +60,15 @@ class SendMessageItemView(context: Context?, attrs: AttributeSet? = null) :
         }
     }
 
-    private fun updateTimeStamp(emMessage: EMMessage) {
-        timestamp.text = DateUtils.getTimestampString(Date(emMessage.msgTime))
+    private fun updateTimeStamp(emMessage: EMMessage, showTimeStamp: Boolean) {
+
+        if (showTimeStamp){
+            timestamp.text = DateUtils.getTimestampString(Date(emMessage.msgTime))
+            timestamp.visibility = View.VISIBLE
+        }else{
+            timestamp.visibility = View.GONE
+        }
+
     }
 
     init {

@@ -2,12 +2,10 @@ package com.szm.im.ui.activity
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hyphenate.EMMessageListener
+import androidx.recyclerview.widget.RecyclerView
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMMessage
 import com.szm.im.R
@@ -48,6 +46,8 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
             sendMessage()
         }
 
+        presenter.loadMessages(username)
+
     }
 
     private fun initRecyclerView() {
@@ -55,7 +55,23 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = MessageListAdapter(context,presenter.messages)
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE){
+                        val linearLayoutManager = layoutManager as LinearLayoutManager
+                        if (linearLayoutManager.findFirstVisibleItemPosition()== 0){
+                            //load more
+                            presenter.loadMoreMessages(username)
+                        }
+                    }
+                }
+            })
+
         }
+
+
+
     }
 
     private fun sendMessage() {
@@ -118,6 +134,16 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
     override fun onSendMessageFailed() {
         toast("send Message failed")
         recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onMessageLoaded() {
+        recyclerView.adapter?.notifyDataSetChanged()
+        scrollToBottom()
+    }
+
+    override fun onMoreMessagesLoaded(size: Int) {
+        recyclerView.adapter?.notifyDataSetChanged()
+        recyclerView.scrollToPosition(size)
     }
 
     override fun onDestroy() {
