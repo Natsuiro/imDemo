@@ -20,7 +20,7 @@ import org.jetbrains.anko.toast
 class ContactFragment : BaseFragment(),ContactContract.View {
 
     val presenter = ContactPresenter(this)
-    val contactListener = object :
+    private val contactListener = object :
         EMContactListenerAdapter() {
         override fun onContactDeleted(p0: String?) {
             //重新获取联系人的数据
