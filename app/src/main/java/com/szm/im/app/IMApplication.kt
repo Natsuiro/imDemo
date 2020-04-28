@@ -1,10 +1,8 @@
 package com.szm.im.app
 
-import android.app.ActivityManager
-import android.app.Application
-import android.app.Notification
-import android.app.NotificationManager
+import android.app.*
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import cn.bmob.v3.Bmob
@@ -15,6 +13,7 @@ import com.hyphenate.chat.EMTextMessageBody
 import com.szm.im.BuildConfig
 import com.szm.im.R
 import com.szm.im.adapter.EMMessageListenerAdapter
+import com.szm.im.ui.activity.ChatActivity
 
 class IMApplication : Application() {
 
@@ -39,12 +38,20 @@ class IMApplication : Application() {
             if (it.type == EMMessage.Type.TXT){
                 contentText = (it.body as EMTextMessageBody).message
             }
+            val intent = Intent(this,ChatActivity::class.java)
+            intent.putExtra("username",it.conversationId())
+            //val pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
 
+            val taskStackBuilder = TaskStackBuilder.create(this).addParentStack(ChatActivity::class.java).addNextIntent(intent)
+
+            val pendingIntent = taskStackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT)
            val notification = Notification.Builder(this)
                .setContentTitle(it.userName)
                .setContentText(contentText)
                .setLargeIcon(BitmapFactory.decodeResource(resources,R.drawable.icon_avatar))
                .setSmallIcon(R.drawable.icon_avatar)
+               .setContentIntent(pendingIntent)
+               .setAutoCancel(true)
                .notification
             manager.notify(1,notification)
         }
