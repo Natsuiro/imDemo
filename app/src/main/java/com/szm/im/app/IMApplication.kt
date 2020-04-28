@@ -4,8 +4,10 @@ import android.app.Application
 import android.os.Build
 import cn.bmob.v3.Bmob
 import com.hyphenate.chat.EMClient
+import com.hyphenate.chat.EMMessage
 import com.hyphenate.chat.EMOptions
 import com.szm.im.BuildConfig
+import com.szm.im.adapter.EMMessageListenerAdapter
 
 class IMApplication : Application() {
 
@@ -13,6 +15,11 @@ class IMApplication : Application() {
         lateinit var instance: IMApplication
     }
 
+    private val messageListener = object : EMMessageListenerAdapter() {
+        override fun onMessageReceived(p0: MutableList<EMMessage>?) {
+
+        }
+    }
     override fun onCreate() {
         super.onCreate()
         instance = this
@@ -27,5 +34,11 @@ class IMApplication : Application() {
 
         //bmob init
         Bmob.initialize(applicationContext,"60e66e7bd29aa29d93835e203d228efa")
+
+
+        EMClient.getInstance().chatManager().addMessageListener(messageListener)
     }
+
+
+
 }
