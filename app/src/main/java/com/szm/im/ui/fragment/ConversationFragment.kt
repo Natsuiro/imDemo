@@ -14,8 +14,9 @@ import org.jetbrains.anko.uiThread
 
 class ConversationFragment : BaseFragment() {
 
+    //历史聊天列表
     private val conversations = mutableListOf<EMConversation>()
-
+    //监听消息接收
     private val messageListener = object : EMMessageListenerAdapter() {
         override fun onMessageReceived(p0: MutableList<EMMessage>?) {
             loadConversation()
@@ -32,16 +33,13 @@ class ConversationFragment : BaseFragment() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = ConversationListAdapter(context,conversations)
-
         }
-
         EMClient.getInstance().chatManager().addMessageListener(messageListener)
 
-        //loadConversation()
+        //loadConversation() 稍后会在onResume中调用，这里不需要调用
     }
-
+    //异步加载聊天记录
     private fun loadConversation() {
-
 
         doAsync {
             conversations.clear()
@@ -51,8 +49,6 @@ class ConversationFragment : BaseFragment() {
                 recyclerView.adapter?.notifyDataSetChanged()
             }
         }
-
-
     }
 
     override fun onResume() {
@@ -62,6 +58,7 @@ class ConversationFragment : BaseFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        //取消监听
         EMClient.getInstance().chatManager().removeMessageListener(messageListener)
     }
 

@@ -12,8 +12,8 @@ import com.szm.im.R
 import kotlinx.android.synthetic.main.conversation_item.view.*
 import java.util.*
 
-class ConversationListItemView(context: Context?, attrs: AttributeSet? = null) :
-    RelativeLayout(context, attrs) {
+class ConversationListItemView(context: Context?, attrs: AttributeSet? = null) : RelativeLayout(context, attrs) {
+
     fun bindView(emConversation: EMConversation) {
         username.text = emConversation.conversationId()
         if (emConversation.lastMessage.type == EMMessage.Type.TXT){
@@ -32,7 +32,6 @@ class ConversationListItemView(context: Context?, attrs: AttributeSet? = null) :
         }else{
             unreadCount.visibility = View.GONE
         }
-
     }
 
     init {

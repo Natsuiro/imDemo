@@ -16,10 +16,11 @@ class LoginActivity : BaseActivity(),LoginContract.View {
     private val presenter = LoginPresenter(this)
     override fun init() {
         super.init()
+        //注册新用户
         newUser.setOnClickListener {
             startActivity<RegisterActivity>()
         }
-
+        //获取用户点击事件
         login.setOnClickListener { login() }
         password.setOnEditorActionListener { _, _, _ ->
             login()
@@ -31,7 +32,7 @@ class LoginActivity : BaseActivity(),LoginContract.View {
         //隐藏软键盘
         hideSoftKeyBoard()
 
-        if (hasWriteExternalStoragePermission()){
+        if (hasWriteExternalStoragePermission()){//获取用户的输入，然后交给presenter具体做登录的逻辑
             val userName = username.text.trim().toString()
             val password = password.text.trim().toString()
             presenter.login(userName,password)
@@ -40,12 +41,12 @@ class LoginActivity : BaseActivity(),LoginContract.View {
         }
 
     }
-
+    //申请权限 WriteExternalStorage
     private fun applyWriteExternalStoragePermission() {
         val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         ActivityCompat.requestPermissions(this,permissions,0)
     }
-
+    //权限回调
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -57,7 +58,7 @@ class LoginActivity : BaseActivity(),LoginContract.View {
             toast(R.string.permission_denied)
         }
     }
-
+    //检查权限:WriteExternalStorage
     private fun hasWriteExternalStoragePermission(): Boolean {
 
         val checkSelfPermission =

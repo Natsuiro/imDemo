@@ -33,12 +33,12 @@ class SplashActivity : BaseActivity(),SplashContract.View {
 
 
     }
-
+    //申请权限
     private fun applyReadPhoneStatePermission() {
         val permissions = arrayOf(Manifest.permission.READ_PHONE_STATE)
         ActivityCompat.requestPermissions(this,permissions,0)
     }
-
+    //申请权限的结果回调
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -49,10 +49,8 @@ class SplashActivity : BaseActivity(),SplashContract.View {
         }else{
             presenter.checkLoginStatus()
         }
-
-
     }
-
+    //检查权限：ReadPhoneState
     private fun hasReadPhoneStatePermission(): Boolean {
 
         val checkSelfPermission =

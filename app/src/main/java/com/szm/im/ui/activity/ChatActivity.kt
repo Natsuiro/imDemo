@@ -32,7 +32,6 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
                 scrollToBottom()
             }
         }
-
     }
     override fun init() {
         super.init()
@@ -47,7 +46,6 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
         }
 
         presenter.loadMessages(username)
-
     }
 
     private fun initRecyclerView() {
@@ -105,13 +103,10 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
     private fun initHeader() {
         back.visibility = View.VISIBLE
         back.setOnClickListener { finish() }
-
         //获取聊天的对象
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
         username = intent.getStringExtra("username")
         header_title.text = username
-
-
     }
 
     override fun onStartSendMessage() {
@@ -143,7 +138,7 @@ class ChatActivity : BaseActivity() ,ChatContract.View{
 
     override fun onMoreMessagesLoaded(size: Int) {
         recyclerView.adapter?.notifyDataSetChanged()
-        recyclerView.scrollToPosition(size)
+        recyclerView.smoothScrollToPosition(size)
     }
 
     override fun onDestroy() {

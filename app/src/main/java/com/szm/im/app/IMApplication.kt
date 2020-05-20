@@ -22,17 +22,17 @@ class IMApplication : Application() {
     }
 
     private val messageListener = object : EMMessageListenerAdapter() {
-        override fun onMessageReceived(p0: MutableList<EMMessage>?) {
+        override fun onMessageReceived(msg: MutableList<EMMessage>?) {
             if (!isForeGround()){
-                showNotification(p0)
+                showNotification(msg)
             }
         }
     }
 
-    private fun showNotification(p0: MutableList<EMMessage>?) {
+    private fun showNotification(msg: MutableList<EMMessage>?) {
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        p0?.forEach {
+        msg?.forEach {
             var contentText = getString(R.string.not_text_message)
 
             if (it.type == EMMessage.Type.TXT){
@@ -71,7 +71,6 @@ class IMApplication : Application() {
 
         //bmob init
         Bmob.initialize(applicationContext,"60e66e7bd29aa29d93835e203d228efa")
-
 
         EMClient.getInstance().chatManager().addMessageListener(messageListener)
     }

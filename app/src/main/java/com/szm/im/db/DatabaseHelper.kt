@@ -5,8 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import com.szm.im.app.IMApplication
 import org.jetbrains.anko.db.*
 
-class DatabaseHelper(ctx: Context = IMApplication.instance)
-    : ManagedSQLiteOpenHelper(ctx, NAME, null, VERSION) {
+class DatabaseHelper(ctx: Context = IMApplication.instance) : ManagedSQLiteOpenHelper(ctx, NAME, null, VERSION) {
 
     companion object{
         const val NAME = "im.db"

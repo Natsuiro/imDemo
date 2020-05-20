@@ -53,6 +53,10 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
     }
 
 
+    override fun performClick(): Boolean {
+        return super.performClick()
+    }
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         when(event.action){
@@ -76,12 +80,13 @@ class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, a
                 setBackgroundColor(Color.TRANSPARENT)
                 onSectionChangeListener?.onSlideFinish()
             }
-//            MotionEvent.ACTION_MOVE ->
         }
+        performClick()
         return true
     }
 
-    //获取点击位置的字母的下表
+    //获取点击位置的字母的下标
+    //根据触摸位置的高度和一个字符占的高度
     private fun getTouchIndex(event: MotionEvent): Int {
         var index :Int = (event.y / sectionHeight).toInt()
         //越界检查

@@ -9,16 +9,12 @@ import com.szm.im.ui.activity.ChatActivity
 import com.szm.im.widget.ConversationListItemView
 import org.jetbrains.anko.startActivity
 
-class ConversationListAdapter(
-    val context: Context,
-    private val conversations: MutableList<EMConversation>
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ConversationListAdapter(val context: Context, private val conversations: MutableList<EMConversation>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ConversationListViewHolder(ConversationListItemView(context))
     }
 
     override fun getItemCount(): Int = conversations.size
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val conversationListItemView = holder.itemView as ConversationListItemView
         conversationListItemView.bindView(conversations[position])
@@ -28,8 +24,6 @@ class ConversationListAdapter(
         }
     }
 
-    class ConversationListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    }
+    class ConversationListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 }

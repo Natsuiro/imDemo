@@ -22,14 +22,15 @@ class ContactPresenter(val view: ContactContract.View) : ContactContract.Present
 
             //clear set
             contactListItems.clear()
+            //更新所有的联系人，删库
             IMDatabase.instance.deleteAllContacts()
 
             try {
                 val userNames = EMClient.getInstance().contactManager().allContactsFromServer
-
+                //按照首字母排序
                 userNames.sortBy { it[0] }
                 Log.d("contactPresenter",""+userNames.size)
-
+                //带索引的遍历
                 userNames.forEachIndexed{ index,value->
                     //判断是否显示首字符
                     //忽略大小写区别

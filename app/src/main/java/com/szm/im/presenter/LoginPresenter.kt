@@ -34,7 +34,9 @@ class LoginPresenter(private val view:LoginContract.View) : LoginContract.Presen
             override fun onSuccess() {
                 //在主线程中通知view层
                 EMClient.getInstance().groupManager().loadAllGroups()
+
                 EMClient.getInstance().chatManager().loadAllConversations()
+
                 Log.d("login","login success!")
                 //切换到主线程
                 uiThread { view.onLoggedInSuccess() }

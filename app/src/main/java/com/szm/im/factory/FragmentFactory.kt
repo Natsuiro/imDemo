@@ -8,13 +8,13 @@ import com.szm.im.ui.fragment.DynamicFragment
 
 class FragmentFactory private constructor(){
 
-    val conversation by lazy {
+    private val conversation by lazy {
         ConversationFragment()
     }
-    val contact by lazy {
+    private val contact by lazy {
         ContactFragment()
     }
-    val dynamic by lazy {
+    private val dynamic by lazy {
         DynamicFragment()
     }
 

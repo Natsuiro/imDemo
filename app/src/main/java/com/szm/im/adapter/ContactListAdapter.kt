@@ -42,9 +42,9 @@ class ContactListAdapter(private val context:Context,private val contactListItem
                 .setTitle(R.string.delete_friend_title)
                 .setMessage(message)
                 .setNegativeButton(R.string.action_cancel,null)
-                .setPositiveButton(R.string.action_confirm, DialogInterface.OnClickListener { dialog, which ->
+                .setPositiveButton(R.string.action_confirm) { _, _ ->
                     deleteFriend(userName)
-                })
+                }
                 .show()
             true
 

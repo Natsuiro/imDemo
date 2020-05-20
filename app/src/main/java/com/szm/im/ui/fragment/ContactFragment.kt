@@ -20,6 +20,7 @@ import org.jetbrains.anko.toast
 class ContactFragment : BaseFragment(),ContactContract.View {
 
     val presenter = ContactPresenter(this)
+
     private val contactListener = object :
         EMContactListenerAdapter() {
         override fun onContactDeleted(p0: String?) {
@@ -45,6 +46,7 @@ class ContactFragment : BaseFragment(),ContactContract.View {
     }
 
     private fun initSlideBar() {
+
         slideBar.onSectionChangeListener = object : SlideBar.OnSectionChangeListener {
             override fun onSectionChange(firstLetter: String) {
                 section.visibility = View.VISIBLE
@@ -62,7 +64,6 @@ class ContactFragment : BaseFragment(),ContactContract.View {
             override fun onSlideFinish() {
                 section.visibility = View.GONE
             }
-
         }
     }
 
